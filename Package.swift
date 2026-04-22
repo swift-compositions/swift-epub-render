@@ -20,7 +20,7 @@ let package = Package(
         .package(path: "../swift-html-rendering"),
         .package(path: "../../swift-standards/swift-epub-standard"),
         .package(path: "../../swift-standards/swift-iso-21320"),
-        .package(url: "https://github.com/swift-standards/swift-bcp-47", from: "0.1.4"),
+        .package(url: "https://github.com/swift-ietf/swift-bcp-47", from: "0.1.4"),
         .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.18.0"),
     ],
     targets: [
