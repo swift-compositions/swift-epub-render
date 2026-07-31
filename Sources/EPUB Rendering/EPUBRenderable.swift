@@ -2,12 +2,7 @@
 //
 // Rendering protocol for EPUB documents.
 
-public import Rendering
-public import HTML_Renderable
 public import EPUB_Standard
-
-/// A type that can be rendered to EPUB format.
-public protocol EPUBRenderable: Renderable where Output == EPUB.Rendering.Output {}
 
 extension EPUB {
     /// Rendering types for EPUB.

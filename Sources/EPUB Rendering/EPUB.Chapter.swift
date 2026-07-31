@@ -4,7 +4,7 @@
 
 public import BCP_47
 public import HTML
-public import HTML_Renderable
+public import HTML_Rendering_Core
 
 extension EPUB {
     /// Chapter XHTML generator.
