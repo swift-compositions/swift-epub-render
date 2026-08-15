@@ -16,14 +16,19 @@ func escapeXML(_ string: String) -> String {
         switch char {
         case "&":
             result += "&amp;"
+
         case "<":
             result += "&lt;"
+
         case ">":
             result += "&gt;"
+
         case "\"":
             result += "&quot;"
+
         case "'":
             result += "&apos;"
+
         default:
             result.append(Character(char))
         }
@@ -47,7 +52,12 @@ extension EPUB {
     ) -> String {
         String(
             format: "%04d-%02d-%02dT%02d:%02d:%02dZ",
-            year, month, day, hour, minute, second
+            year,
+            month,
+            day,
+            hour,
+            minute,
+            second
         )
     }
 }

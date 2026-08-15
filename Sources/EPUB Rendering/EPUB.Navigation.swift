@@ -36,27 +36,27 @@ extension EPUB.Navigation {
         language: BCP47.LanguageTag
     ) -> String {
         var xml = """
-        <?xml version="1.0" encoding="UTF-8"?>
-        <!DOCTYPE html>
-        <html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" lang="\(escapeXML(language.value))">
-        <head>
-          <meta charset="UTF-8"/>
-          <title>\(escapeXML(title))</title>
-        </head>
-        <body>
-          <nav epub:type="toc" id="toc">
-            <h1>Table of Contents</h1>
+            <?xml version="1.0" encoding="UTF-8"?>
+            <!DOCTYPE html>
+            <html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" lang="\(escapeXML(language.value))">
+            <head>
+              <meta charset="UTF-8"/>
+              <title>\(escapeXML(title))</title>
+            </head>
+            <body>
+              <nav epub:type="toc" id="toc">
+                <h1>Table of Contents</h1>
 
-        """
+            """
 
         xml += renderList(items, indent: 4)
 
         xml += """
-          </nav>
-        </body>
-        </html>
+              </nav>
+            </body>
+            </html>
 
-        """
+            """
 
         return xml
     }

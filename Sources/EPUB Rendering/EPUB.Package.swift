@@ -91,14 +91,14 @@ extension EPUB.Package {
         spine: [Spine.Item]
     ) -> String {
         var xml = """
-        <?xml version="1.0" encoding="UTF-8"?>
-        <package xmlns="http://www.idpf.org/2007/opf" version="3.0" unique-identifier="pub-id">
-          <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
-            <dc:identifier id="pub-id">\(escapeXML(metadata.identifier))</dc:identifier>
-            <dc:title>\(escapeXML(metadata.title))</dc:title>
-            <dc:language>\(escapeXML(metadata.language.value))</dc:language>
+            <?xml version="1.0" encoding="UTF-8"?>
+            <package xmlns="http://www.idpf.org/2007/opf" version="3.0" unique-identifier="pub-id">
+              <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+                <dc:identifier id="pub-id">\(escapeXML(metadata.identifier))</dc:identifier>
+                <dc:title>\(escapeXML(metadata.title))</dc:title>
+                <dc:language>\(escapeXML(metadata.language.value))</dc:language>
 
-        """
+            """
 
         for creator in metadata.creators {
             xml += "    <dc:creator>\(escapeXML(creator))</dc:creator>\n"
@@ -129,7 +129,8 @@ extension EPUB.Package {
             if !item.properties.isEmpty {
                 props = " properties=\"\(item.properties.joined(separator: " "))\""
             }
-            xml += "    <item id=\"\(escapeXML(item.id))\" href=\"\(escapeXML(item.href))\" media-type=\"\(escapeXML(item.media))\"\(props)/>\n"
+            xml +=
+                "    <item id=\"\(escapeXML(item.id))\" href=\"\(escapeXML(item.href))\" media-type=\"\(escapeXML(item.media))\"\(props)/>\n"
         }
 
         xml += "  </manifest>\n"

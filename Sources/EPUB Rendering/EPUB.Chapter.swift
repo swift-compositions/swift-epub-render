@@ -57,23 +57,24 @@ extension EPUB.Chapter {
             // Build stylesheet links
             var stylesheetLinks = ""
             for stylesheet in stylesheets {
-                stylesheetLinks += "  <link rel=\"stylesheet\" type=\"text/css\" href=\"\(escapeXML(stylesheet))\"/>\n"
+                stylesheetLinks +=
+                    "  <link rel=\"stylesheet\" type=\"text/css\" href=\"\(escapeXML(stylesheet))\"/>\n"
             }
 
             return """
-            <?xml version="1.0" encoding="UTF-8"?>
-            <!DOCTYPE html>
-            <html xmlns="http://www.w3.org/1999/xhtml" lang="\(escapeXML(language.value))">
-            <head>
-              <meta charset="UTF-8"/>
-              <title>\(escapeXML(title))</title>
-            \(stylesheetLinks)</head>
-            <body>
-            \(bodyHTML)
-            </body>
-            </html>
+                <?xml version="1.0" encoding="UTF-8"?>
+                <!DOCTYPE html>
+                <html xmlns="http://www.w3.org/1999/xhtml" lang="\(escapeXML(language.value))">
+                <head>
+                  <meta charset="UTF-8"/>
+                  <title>\(escapeXML(title))</title>
+                \(stylesheetLinks)</head>
+                <body>
+                \(bodyHTML)
+                </body>
+                </html>
 
-            """
+                """
         }
     }
 }
@@ -98,27 +99,28 @@ extension EPUB.Chapter {
         stylesheets: [String] = []
     ) -> String {
         var xml = """
-        <?xml version="1.0" encoding="UTF-8"?>
-        <!DOCTYPE html>
-        <html xmlns="http://www.w3.org/1999/xhtml" lang="\(escapeXML(language.value))">
-        <head>
-          <meta charset="UTF-8"/>
-          <title>\(escapeXML(title))</title>
+            <?xml version="1.0" encoding="UTF-8"?>
+            <!DOCTYPE html>
+            <html xmlns="http://www.w3.org/1999/xhtml" lang="\(escapeXML(language.value))">
+            <head>
+              <meta charset="UTF-8"/>
+              <title>\(escapeXML(title))</title>
 
-        """
+            """
 
         for stylesheet in stylesheets {
-            xml += "  <link rel=\"stylesheet\" type=\"text/css\" href=\"\(escapeXML(stylesheet))\"/>\n"
+            xml +=
+                "  <link rel=\"stylesheet\" type=\"text/css\" href=\"\(escapeXML(stylesheet))\"/>\n"
         }
 
         xml += """
-        </head>
-        <body>
-        \(body)
-        </body>
-        </html>
+            </head>
+            <body>
+            \(body)
+            </body>
+            </html>
 
-        """
+            """
 
         return xml
     }
