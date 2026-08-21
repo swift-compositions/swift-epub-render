@@ -14,7 +14,7 @@ struct EPUB_Rendering_Tests {
 
     @Test("EPUB output")
     func epubOutput() {
-        let output = EPUB.Rendering.Output(data: [0x50, 0x4B, 0x03, 0x04])  // ZIP magic bytes
+        let output = EPUB.Rendering.Output(data: [0x50, 0x4B, 0x03, 0x04])
         #expect(output.data.count == 4)
     }
 }

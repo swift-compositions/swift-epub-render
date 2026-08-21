@@ -1,34 +1,22 @@
-// EPUB.Chapter.swift
-//
-// Generates XHTML chapter documents for EPUB.
-
 public import BCP_47
 public import HTML
 public import HTML_Rendering_Core
 
 extension EPUB {
-    /// Chapter XHTML generator.
+
     public enum Chapter {}
 }
 
-// MARK: - Document
-
 extension EPUB.Chapter {
-    /// A chapter document for EPUB.
-    ///
-    /// This struct provides type-safe chapter construction with XHTML rendering
-    /// suitable for EPUB 3.3.
+
     public struct Document<Content: HTML.View>: Sendable where Content: Sendable {
-        /// The chapter title.
+
         public let title: String
 
-        /// The language tag.
         public let language: BCP47.LanguageTag
 
-        /// Stylesheet paths to include.
         public let stylesheets: [String]
 
-        /// The chapter content.
         public let content: Content
 
         public init(
@@ -43,18 +31,11 @@ extension EPUB.Chapter {
             self.content = content()
         }
 
-        /// Render this document to XHTML format suitable for EPUB.
-        ///
-        /// This method produces XHTML with XML declaration and proper namespace,
-        /// as required by EPUB 3.3.
-        ///
-        /// - Returns: The XHTML content as a string
         public func xhtml() -> String {
-            // Render body content
+
             let bodyBytes: [UInt8] = [UInt8](content)
             let bodyHTML = String(decoding: bodyBytes, as: UTF8.self)
 
-            // Build stylesheet links
             var stylesheetLinks = ""
             for stylesheet in stylesheets {
                 stylesheetLinks +=
@@ -79,19 +60,8 @@ extension EPUB.Chapter {
     }
 }
 
-// MARK: - String-based (Compatibility)
-
 extension EPUB.Chapter {
-    /// Generate XHTML chapter document from string content.
-    ///
-    /// This is the compatibility approach for pre-rendered HTML strings.
-    ///
-    /// - Parameters:
-    ///   - title: The chapter title
-    ///   - body: The HTML body content (inner HTML)
-    ///   - language: The language tag
-    ///   - stylesheets: CSS stylesheet paths to include
-    /// - Returns: The XHTML content as a string
+
     public static func xhtml(
         title: String,
         body: String,

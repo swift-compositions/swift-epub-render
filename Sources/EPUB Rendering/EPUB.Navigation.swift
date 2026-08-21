@@ -1,16 +1,12 @@
-// EPUB.Navigation.swift
-//
-// Generates nav.xhtml (Navigation Document) for EPUB.
-
 public import BCP_47
 
 extension EPUB {
-    /// Navigation document generator.
+
     public enum Navigation {}
 }
 
 extension EPUB.Navigation {
-    /// A navigation item (table of contents entry).
+
     public struct Item: Sendable {
         public var title: String
         public var href: String
@@ -23,13 +19,6 @@ extension EPUB.Navigation {
         }
     }
 
-    /// Generate navigation document (nav.xhtml).
-    ///
-    /// - Parameters:
-    ///   - title: The document title
-    ///   - items: The table of contents items
-    ///   - language: The language tag
-    /// - Returns: The nav.xhtml content as a string
     public static func xhtml(
         title: String,
         items: [Item],

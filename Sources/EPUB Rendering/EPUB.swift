@@ -1,13 +1,5 @@
-// EPUB.swift
-//
-// EPUB rendering namespace and utilities.
-
-/// Namespace for EPUB rendering utilities.
 public enum EPUB {}
 
-// MARK: - XML Escaping
-
-/// Escape special characters for XML content.
 @usableFromInline
 func escapeXML(_ string: String) -> String {
     var result = ""
@@ -36,12 +28,8 @@ func escapeXML(_ string: String) -> String {
     return result
 }
 
-// MARK: - ISO 8601 Date
-
 extension EPUB {
-    /// Generate ISO 8601 date string for EPUB dcterms:modified.
-    ///
-    /// Format: YYYY-MM-DDTHH:MM:SSZ
+
     public static func iso8601Date(
         year: Int,
         month: Int,
@@ -62,7 +50,6 @@ extension EPUB {
     }
 }
 
-// Helper for String format without Foundation
 extension String {
     init(format: String, _ arguments: Int...) {
         var result = ""
@@ -73,7 +60,7 @@ extension String {
             if format[i] == "%" && format.index(after: i) < format.endIndex {
                 let next = format.index(after: i)
                 if format[next] == "0" {
-                    // Parse width specifier like %04d
+
                     var width = 0
                     var j = next
                     while j < format.endIndex {

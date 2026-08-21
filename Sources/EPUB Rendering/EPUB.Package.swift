@@ -1,16 +1,12 @@
-// EPUB.Package.swift
-//
-// Generates content.opf (Package Document) for EPUB.
-
 public import BCP_47
 
 extension EPUB {
-    /// Package document (OPF) generator.
+
     public enum Package {}
 }
 
 extension EPUB.Package {
-    /// Metadata for the package document.
+
     public struct Metadata: Sendable {
         public var identifier: String
         public var title: String
@@ -45,7 +41,6 @@ extension EPUB.Package {
         }
     }
 
-    /// A manifest item.
     public struct Item: Sendable {
         public var id: String
         public var href: String
@@ -60,12 +55,11 @@ extension EPUB.Package {
         }
     }
 
-    /// Spine types.
     public enum Spine {}
 }
 
 extension EPUB.Package.Spine {
-    /// A spine item reference.
+
     public struct Item: Sendable {
         public var idref: String
         public var linear: Bool
@@ -78,13 +72,7 @@ extension EPUB.Package.Spine {
 }
 
 extension EPUB.Package {
-    /// Generate package document (content.opf).
-    ///
-    /// - Parameters:
-    ///   - metadata: The publication metadata
-    ///   - manifest: The manifest items
-    ///   - spine: The spine item references
-    /// - Returns: The OPF content as a string
+
     public static func xml(
         metadata: Metadata,
         manifest: [Item],
