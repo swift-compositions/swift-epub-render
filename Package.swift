@@ -15,8 +15,8 @@ let package = Package(
         .library(name: "EPUB Rendering", targets: ["EPUB Rendering"])
     ],
     dependencies: [
-        .package(url: "https://github.com/swift-foundations/swift-html.git", branch: "main"),
-        .package(url: "https://github.com/swift-foundations/swift-html-render.git", branch: "main"),
+        .package(url: "https://github.com/swift-compositions/swift-html.git", branch: "main"),
+        .package(url: "https://github.com/swift-compositions/swift-html-render.git", branch: "main"),
         .package(url: "https://github.com/swift-standards/swift-epub-standard.git", branch: "main"),
         .package(url: "https://github.com/swift-iso/swift-iso-21320.git", branch: "main"),
         .package(url: "https://github.com/swift-ietf/swift-bcp-47", from: "0.1.4"),
