@@ -1,4 +1,5 @@
 public import BCP_47
+import Byte
 public import HTML
 public import HTML_Rendering_Core
 
@@ -33,7 +34,7 @@ extension EPUB.Chapter {
 
         public func xhtml() -> String {
 
-            let bodyBytes: [UInt8] = [UInt8](content)
+            let bodyBytes: [Byte] = [Byte](content)
             let bodyHTML = String(decoding: bodyBytes, as: UTF8.self)
 
             var stylesheetLinks = ""

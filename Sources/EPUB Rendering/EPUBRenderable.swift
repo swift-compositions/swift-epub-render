@@ -1,3 +1,4 @@
+public import Byte
 public import EPUB_Standard
 
 extension EPUB {
@@ -9,9 +10,9 @@ extension EPUB.Rendering {
 
     public struct Output: Sendable, Hashable {
 
-        public var data: [UInt8]
+        public var data: [Byte]
 
-        public init(data: [UInt8]) {
+        public init(data: [Byte]) {
             self.data = data
         }
     }

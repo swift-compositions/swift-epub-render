@@ -15,6 +15,7 @@ let package = Package(
         .library(name: "EPUB Rendering", targets: ["EPUB Rendering"])
     ],
     dependencies: [
+        .package(url: "https://github.com/swift-atoms/swift-byte.git", branch: "main"),
         .package(url: "https://github.com/swift-compositions/swift-html.git", branch: "main"),
         .package(url: "https://github.com/swift-compositions/swift-html-render.git", branch: "main"),
         .package(url: "https://github.com/swift-standards/swift-epub-standard.git", branch: "main"),
@@ -26,6 +27,7 @@ let package = Package(
         .target(
             name: "EPUB Rendering",
             dependencies: [
+                .product(name: "Byte", package: "swift-byte"),
                 .product(name: "HTML", package: "swift-html"),
                 .product(name: "HTML Rendering Core", package: "swift-html-render"),
                 .product(name: "EPUB Standard", package: "swift-epub-standard"),
