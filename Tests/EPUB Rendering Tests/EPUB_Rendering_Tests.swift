@@ -1,3 +1,4 @@
+import Byte
 import Testing
 
 @testable import EPUB_Rendering
@@ -14,7 +15,7 @@ struct EPUB_Rendering_Tests {
 
     @Test("EPUB output")
     func epubOutput() {
-        let output = EPUB.Rendering.Output(data: [0x50, 0x4B, 0x03, 0x04])
+        let output = EPUB.Rendering.Output(data: [0x50, 0x4B, 0x03, 0x04].map(Byte.init(bitPattern:)))
         #expect(output.data.count == 4)
     }
 }

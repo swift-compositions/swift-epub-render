@@ -39,6 +39,7 @@ let package = Package(
             name: "EPUB Rendering Tests",
             dependencies: [
                 "EPUB Rendering",
+                .product(name: "Byte", package: "swift-byte"),
                 .product(name: "InlineSnapshotTesting", package: "swift-snapshot-testing"),
             ]
         ),
