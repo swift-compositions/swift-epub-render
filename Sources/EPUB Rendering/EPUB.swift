@@ -65,8 +65,8 @@ extension String {
                     var j = next
                     while j < format.endIndex {
                         let c = format[j]
-                        if c.isNumber {
-                            width = width * 10 + Int(String(c))!
+                        if let digit = c.wholeNumberValue {
+                            width = width * 10 + digit
                         } else if c == "d" {
                             if argIndex < arguments.count {
                                 let num = arguments[argIndex]
