@@ -20,7 +20,7 @@ let package = Package(
         .package(url: "https://github.com/swift-compositions/swift-html-render.git", branch: "main"),
         .package(url: "https://github.com/swift-standards/swift-epub-standard.git", branch: "main"),
         .package(url: "https://github.com/swift-iso/swift-iso-21320.git", branch: "main"),
-        .package(url: "https://github.com/swift-ietf/swift-bcp-47", from: "0.1.4"),
+        .package(url: "https://github.com/swift-ietf/swift-bcp-47.git", branch: "main"),
         .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.18.0"),
     ],
     targets: [
