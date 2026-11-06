@@ -42,7 +42,7 @@ let package = Package(
         .testTarget(
             name: "EPUB Rendering Tests",
             dependencies: [
-                "EPUB Rendering",
+                .target(name: "EPUB Rendering"),
                 .product(name: "Byte", package: "swift-byte"),
                 .product(name: "InlineSnapshotTesting", package: "swift-snapshot-testing"),
             ]
