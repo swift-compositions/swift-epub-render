@@ -1,4 +1,5 @@
 public import BCP_47
+public import RFC_3987
 
 extension EPUB {
 
@@ -9,10 +10,10 @@ extension EPUB.Navigation {
 
     public struct Item: Sendable {
         public var title: String
-        public var href: String
+        public var href: RFC_3987.IRI.Reference
         public var children: [Item]
 
-        public init(title: String, href: String, children: [Item] = []) {
+        public init(title: String, href: RFC_3987.IRI.Reference, children: [Item] = []) {
             self.title = title
             self.href = href
             self.children = children
@@ -58,7 +59,7 @@ extension EPUB.Navigation {
 
         for item in items {
             xml += "\(spaces)  <li>\n"
-            xml += "\(spaces)    <a href=\"\(escapeXML(item.href))\">\(escapeXML(item.title))</a>\n"
+            xml += "\(spaces)    <a href=\"\(escapeXML(item.href.value))\">\(escapeXML(item.title))</a>\n"
             if !item.children.isEmpty {
                 xml += renderList(item.children, indent: indent + 4)
             }

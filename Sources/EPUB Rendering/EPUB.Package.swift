@@ -1,4 +1,6 @@
 public import BCP_47
+public import ISO_8601
+public import RFC_3987
 
 extension EPUB {
 
@@ -13,7 +15,7 @@ extension EPUB.Package {
         public var language: BCP47.LanguageTag
         public var creators: [String]
         public var publisher: String?
-        public var date: String?
+        public var date: ISO_8601.CalendarDate.Reduced?
         public var description: String?
         public var subjects: [String]
         public var modified: String
@@ -24,7 +26,7 @@ extension EPUB.Package {
             language: BCP47.LanguageTag,
             creators: [String] = [],
             publisher: String? = nil,
-            date: String? = nil,
+            date: ISO_8601.CalendarDate.Reduced? = nil,
             description: String? = nil,
             subjects: [String] = [],
             modified: String
@@ -43,11 +45,11 @@ extension EPUB.Package {
 
     public struct Item: Sendable {
         public var id: String
-        public var href: String
+        public var href: RFC_3987.IRI.Reference
         public var media: String
         public var properties: [String]
 
-        public init(id: String, href: String, media: String, properties: [String] = []) {
+        public init(id: String, href: RFC_3987.IRI.Reference, media: String, properties: [String] = []) {
             self.id = id
             self.href = href
             self.media = media
@@ -97,7 +99,7 @@ extension EPUB.Package {
         }
 
         if let date = metadata.date {
-            xml += "    <dc:date>\(escapeXML(date))</dc:date>\n"
+            xml += "    <dc:date>\(escapeXML(date.extended))</dc:date>\n"
         }
 
         if let description = metadata.description {
@@ -118,7 +120,7 @@ extension EPUB.Package {
                 props = " properties=\"\(item.properties.joined(separator: " "))\""
             }
             xml +=
-                "    <item id=\"\(escapeXML(item.id))\" href=\"\(escapeXML(item.href))\" media-type=\"\(escapeXML(item.media))\"\(props)/>\n"
+                "    <item id=\"\(escapeXML(item.id))\" href=\"\(escapeXML(item.href.value))\" media-type=\"\(escapeXML(item.media))\"\(props)/>\n"
         }
 
         xml += "  </manifest>\n"
