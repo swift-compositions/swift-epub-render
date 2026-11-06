@@ -18,7 +18,7 @@ extension EPUB.Package {
         public var date: ISO_8601.CalendarDate.Reduced?
         public var description: String?
         public var subjects: [String]
-        public var modified: String
+        public var modified: ISO_8601.DateTime
 
         public init(
             identifier: String,
@@ -29,7 +29,7 @@ extension EPUB.Package {
             date: ISO_8601.CalendarDate.Reduced? = nil,
             description: String? = nil,
             subjects: [String] = [],
-            modified: String
+            modified: ISO_8601.DateTime
         ) {
             self.identifier = identifier
             self.title = title
@@ -75,6 +75,13 @@ extension EPUB.Package.Spine {
 
 extension EPUB.Package {
 
+    /// EPUB 3 holds `dcterms:modified` to `CCYY-MM-DDThh:mm:ssZ`: UTC, in whole seconds.
+    private static func modifiedText(_ value: ISO_8601.DateTime) -> String {
+        let text = ISO_8601.DateTime.Formatter.format(value, timezone: .utc)
+        guard let fraction = text.firstIndex(of: ".") else { return text }
+        return String(text[..<fraction]) + "Z"
+    }
+
     public static func xml(
         metadata: Metadata,
         manifest: [Item],
@@ -110,7 +117,7 @@ extension EPUB.Package {
             xml += "    <dc:subject>\(escapeXML(subject))</dc:subject>\n"
         }
 
-        xml += "    <meta property=\"dcterms:modified\">\(escapeXML(metadata.modified))</meta>\n"
+        xml += "    <meta property=\"dcterms:modified\">\(modifiedText(metadata.modified))</meta>\n"
         xml += "  </metadata>\n"
         xml += "  <manifest>\n"
 
