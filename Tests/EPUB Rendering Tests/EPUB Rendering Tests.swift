@@ -3,8 +3,8 @@ import Testing
 
 @testable import EPUB_Rendering
 
-@Suite("EPUB Rendering Tests")
-struct EPUB_Rendering_Tests {
+@Suite
+struct `EPUB Rendering Tests` {
     @Test("Rendering context defaults")
     func renderingContextDefaults() {
         let context = EPUB.Rendering.Context()
