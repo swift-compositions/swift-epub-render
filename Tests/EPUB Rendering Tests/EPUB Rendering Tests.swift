@@ -6,7 +6,7 @@ import Testing
 @Suite
 struct `EPUB Rendering Tests` {
     @Test("Rendering context defaults")
-    func renderingContextDefaults() {
+    func `rendering context defaults`() {
         let context = EPUB.Rendering.Context()
         #expect(context.version == .v3_3)
         #expect(context.ncx == false)
@@ -14,7 +14,7 @@ struct `EPUB Rendering Tests` {
     }
 
     @Test("EPUB output")
-    func epubOutput() {
+    func `epub output`() {
         let output = EPUB.Rendering.Output(data: [0x50, 0x4B, 0x03, 0x04].map(Byte.init(bitPattern:)))
         #expect(output.data.count == 4)
     }
