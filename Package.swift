@@ -44,6 +44,9 @@ let package = Package(
             dependencies: [
                 .target(name: "EPUB Rendering"),
                 .product(name: "Byte", package: "swift-byte"),
+                .product(name: "BCP 47", package: "swift-bcp-47"),
+                .product(name: "RFC 3987", package: "swift-rfc-3987"),
+                .product(name: "ISO 8601", package: "swift-iso-8601"),
                 .product(name: "InlineSnapshotTesting", package: "swift-snapshot-testing"),
             ]
         ),

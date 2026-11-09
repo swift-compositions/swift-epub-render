@@ -82,11 +82,18 @@ extension EPUB.Package {
         return String(text[..<fraction]) + "Z"
     }
 
+    /// Throws ``Error/unknownSpineItem(idref:)`` when a spine item names no
+    /// manifest item.
     public static func xml(
         metadata: Metadata,
         manifest: [Item],
         spine: [Spine.Item]
-    ) -> String {
+    ) throws(EPUB.Package.Error) -> String {
+        let manifestIDs = Set(manifest.map(\.id))
+        if let unknown = spine.first(where: { !manifestIDs.contains($0.idref) }) {
+            throw .unknownSpineItem(idref: unknown.idref)
+        }
+
         var xml = """
             <?xml version="1.0" encoding="UTF-8"?>
             <package xmlns="http://www.idpf.org/2007/opf" version="3.0" unique-identifier="pub-id">
@@ -124,7 +131,7 @@ extension EPUB.Package {
         for item in manifest {
             var props = ""
             if !item.properties.isEmpty {
-                props = " properties=\"\(item.properties.joined(separator: " "))\""
+                props = " properties=\"\(escapeXML(item.properties.joined(separator: " ")))\""
             }
             xml +=
                 "    <item id=\"\(escapeXML(item.id))\" href=\"\(escapeXML(item.href.value))\" media-type=\"\(escapeXML(item.media))\"\(props)/>\n"
