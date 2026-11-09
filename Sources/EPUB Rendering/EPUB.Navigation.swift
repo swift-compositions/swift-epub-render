@@ -20,11 +20,16 @@ extension EPUB.Navigation {
         }
     }
 
+    /// Throws ``Error/empty`` when `items` is empty: EPUB requires the `toc`
+    /// nav's list to hold at least one entry.
     public static func xhtml(
         title: String,
+        heading: String,
         items: [Item],
         language: BCP47.LanguageTag
-    ) -> String {
+    ) throws(EPUB.Navigation.Error) -> String {
+        guard !items.isEmpty else { throw .empty }
+
         var xml = """
             <?xml version="1.0" encoding="UTF-8"?>
             <!DOCTYPE html>
@@ -35,7 +40,7 @@ extension EPUB.Navigation {
             </head>
             <body>
               <nav epub:type="toc" id="toc">
-                <h1>Table of Contents</h1>
+                <h1>\(escapeXML(heading))</h1>
 
             """
 
